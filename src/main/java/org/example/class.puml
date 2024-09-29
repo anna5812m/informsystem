@@ -1,0 +1,47 @@
+@startuml
+
+package "Web Scraping" {
+    [requests]
+    [BeautifulSoup]
+}
+
+
+package "CSV Handling" {
+    [csv]
+}
+
+package "Text Processing" {
+    [nltk]
+    [pymorphy2]
+    [stopwords]
+    [MorphAnalyzer]
+}
+
+package "Data Manipulation" {
+    [pandas]
+}
+
+package "JSON Handling" {
+    [json]
+}
+
+package "External Dependencies" {
+    [elibrary.ru]
+}
+
+[requests] --> [elibrary.ru] : Fetch data
+[BeautifulSoup] --> [requests] : Parse HTML
+
+[BeautifulSoup] --> [csv] : Extract data
+
+
+[nltk] --> [csv] : Process annotations
+[pymorphy2] --> [nltk] : Lemmatize text
+[stopwords] --> [nltk] : Remove stopwords
+[MorphAnalyzer] --> [pymorphy2]
+
+[csv] --> [pandas] : Load and save data
+
+[pandas] --> [json] : Convert to JSON
+
+@enduml
